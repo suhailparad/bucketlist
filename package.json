@@ -1,0 +1,14 @@
+{
+  "name": "bucketlist-pwa",
+  "version": "1.0.0",
+  "private": true,
+  "description": "A calm, installable bucket list app",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js",
+    "test": "node --test"
+  },
+  "engines": { "node": ">=18" },
+  "dependencies": { "express": "^5.1.0" }
+}
