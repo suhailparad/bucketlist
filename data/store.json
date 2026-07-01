@@ -1,0 +1,114 @@
+{
+  "users": [
+    {
+      "id": "c0ad96e5-3dc1-4cfc-99b8-71770b2ee341",
+      "email": "pk.suhail47@gmail.com",
+      "salt": "7b396f5f0f03358b59d82f292110a82d",
+      "hash": "8638a3b418035fbbd32327b612e85e30481ad29f335b50183930cea31bc00dcbd33752583208ae914a9dc684f6b3df6e6ddc0cfb54599f5c929e4a69bd4a5e20",
+      "createdAt": "2026-07-01T06:57:50.415Z"
+    },
+    {
+      "id": "ce306f16-1934-4189-a086-87660f2e243f",
+      "email": "johndoe@gmail.com",
+      "salt": "23cd96071442c18d171bbddd64a40238",
+      "hash": "fcee164dfa690d21f5920613e0de3fe89a591cb68513cbdc8f5a2f37c7377fb0c89d434a5c97997dc9158c75dfff41ba275a43016984ec931f30e77d899b08b6",
+      "createdAt": "2026-07-01T07:14:14.957Z"
+    }
+  ],
+  "buckets": [
+    {
+      "id": "f232e325-cd51-4a0f-beec-181bdd82f94f",
+      "userId": "c0ad96e5-3dc1-4cfc-99b8-71770b2ee341",
+      "name": "Movies",
+      "icon": "star",
+      "createdAt": "2026-07-01T06:58:14.722Z"
+    },
+    {
+      "id": "2f80a5db-b422-468d-8cb0-10abed301fc4",
+      "userId": "c0ad96e5-3dc1-4cfc-99b8-71770b2ee341",
+      "name": "Travelling",
+      "icon": "travel",
+      "createdAt": "2026-07-01T07:13:01.059Z"
+    },
+    {
+      "id": "fc531078-35aa-46b2-bfcf-67a593ad4872",
+      "userId": "c0ad96e5-3dc1-4cfc-99b8-71770b2ee341",
+      "name": "Music",
+      "icon": "music",
+      "createdAt": "2026-07-01T07:13:56.118Z"
+    },
+    {
+      "id": "f90ab0f6-218d-41e0-861a-4542468d7757",
+      "userId": "ce306f16-1934-4189-a086-87660f2e243f",
+      "name": "Books",
+      "icon": "learn",
+      "createdAt": "2026-07-01T07:15:05.016Z"
+    }
+  ],
+  "tasks": [
+    {
+      "id": "18fecdf0-a046-492e-9341-28760b513034",
+      "bucketId": "f232e325-cd51-4a0f-beec-181bdd82f94f",
+      "title": "Blast 2026",
+      "completed": true,
+      "createdAt": "2026-07-01T06:59:59.790Z",
+      "completedAt": "2026-07-01T07:12:22.102Z",
+      "trashedAt": null
+    },
+    {
+      "id": "5e81f579-b79e-4838-810d-7227959bd0d8",
+      "bucketId": "f232e325-cd51-4a0f-beec-181bdd82f94f",
+      "title": "Balan",
+      "completed": false,
+      "createdAt": "2026-07-01T07:12:34.195Z",
+      "completedAt": null,
+      "trashedAt": null
+    },
+    {
+      "id": "46d2d384-bad6-4dac-963f-a73091b8f72d",
+      "bucketId": "2f80a5db-b422-468d-8cb0-10abed301fc4",
+      "title": "Leh",
+      "completed": false,
+      "createdAt": "2026-07-01T07:13:15.314Z",
+      "completedAt": null,
+      "trashedAt": null
+    },
+    {
+      "id": "2dda9014-d451-4364-9f82-c0e37b286877",
+      "bucketId": "2f80a5db-b422-468d-8cb0-10abed301fc4",
+      "title": "Jammu & Kashmir",
+      "completed": false,
+      "createdAt": "2026-07-01T07:13:21.630Z",
+      "completedAt": null,
+      "trashedAt": null
+    },
+    {
+      "id": "56547614-6bed-40ea-8c3a-1b5305bb3591",
+      "bucketId": "f90ab0f6-218d-41e0-861a-4542468d7757",
+      "title": "Balarama",
+      "completed": false,
+      "createdAt": "2026-07-01T07:15:16.555Z",
+      "completedAt": null,
+      "trashedAt": null
+    },
+    {
+      "id": "31e60a89-d345-4259-8fca-741d826a01ac",
+      "bucketId": "f90ab0f6-218d-41e0-861a-4542468d7757",
+      "title": "Manjaadi",
+      "completed": false,
+      "createdAt": "2026-07-01T07:15:21.902Z",
+      "completedAt": null,
+      "trashedAt": null
+    },
+    {
+      "id": "b93ea1d2-9549-422d-b116-face63a82fef",
+      "bucketId": "f90ab0f6-218d-41e0-861a-4542468d7757",
+      "title": "Burried Thoughts",
+      "completed": false,
+      "createdAt": "2026-07-01T07:15:44.147Z",
+      "completedAt": null,
+      "trashedAt": null
+    }
+  ],
+  "sessions": []
+}
