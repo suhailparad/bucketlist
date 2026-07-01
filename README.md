@@ -6,10 +6,29 @@ An installable Express application for collecting life goals in themed buckets.
 
 ```bash
 npm install
+```
+
+Create a `.env` file in the project root using `.env.example` as the template:
+
+```bash
+cp .env.example .env
+```
+
+Then update `.env` with your local or MongoDB Atlas values:
+
+```env
+MONGODB_URI=mongodb://127.0.0.1:27017/bucketlist
+SESSION_SECRET=replace-with-a-long-random-secret
+PORT=3000
+```
+
+Start the application:
+
+```bash
 npm start
 ```
 
-Set the environment variables in your shell (Node does not automatically load `.env`), then open `http://localhost:3000`:
+Alternatively, environment variables can be set directly in your shell:
 
 ```bash
 export MONGODB_URI="mongodb://127.0.0.1:27017/bucketlist"
