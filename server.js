@@ -54,7 +54,7 @@ const serialize = doc => ({ ...doc.toObject(), id: doc._id.toString(), _id: unde
 
 app.disable('x-powered-by');
 app.use(express.json({ limit: '100kb' }));
-app.use(express.static(path.join(__dirname, 'public'), { maxAge: '1h', etag: true }));
+app.use(express.static(path.join(__dirname, 'dist'), { maxAge: '1h', etag: true }));
 app.use('/api', async (req, res, next) => {
   try { await connectDb(); next(); }
   catch (error) { next(error); }
@@ -146,7 +146,7 @@ app.delete('/api/tasks/:taskId', auth, async (req, res) => {
 });
 
 app.use('/api', (req, res) => res.status(404).json({ error: 'Not found.' }));
-app.get('*splat', (req, res) => res.sendFile(path.join(__dirname, 'public', 'index.html')));
+app.get('*splat', (req, res) => res.sendFile(path.join(__dirname, 'dist', 'index.html')));
 app.use((err, req, res, next) => {
   console.error(err); if (err?.code === 11000) return res.status(409).json({ error: 'That value is already in use.' }); res.status(500).json({ error: 'Something went wrong. Please try again.' });
 });
