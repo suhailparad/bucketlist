@@ -37,6 +37,13 @@ const Bucket = mongoose.model('Bucket', bucketSchema);
 const Task = mongoose.model('Task', taskSchema);
 const Session = mongoose.model('Session', sessionSchema);
 
+let connectionPromise;
+function connectDb() {
+  if (mongoose.connection.readyState === 1) return Promise.resolve();
+  if (!connectionPromise) connectionPromise = mongoose.connect(MONGODB_URI).catch(error => { connectionPromise = null; throw error; });
+  return connectionPromise;
+}
+
 const normalizeEmail = email => String(email || '').trim().toLowerCase();
 const hashPassword = (password, salt = crypto.randomBytes(16).toString('hex')) => ({ salt, hash: crypto.scryptSync(password, salt, 64).toString('hex') });
 const safeEqual = (a, b) => typeof a === 'string' && typeof b === 'string' && a.length === b.length && crypto.timingSafeEqual(Buffer.from(a), Buffer.from(b));
@@ -47,6 +54,10 @@ const serialize = doc => ({ ...doc.toObject(), id: doc._id.toString(), _id: unde
 app.disable('x-powered-by');
 app.use(express.json({ limit: '100kb' }));
 app.use(express.static(path.join(__dirname, 'public'), { maxAge: '1h', etag: true }));
+app.use('/api', async (req, res, next) => {
+  try { await connectDb(); next(); }
+  catch (error) { next(error); }
+});
 
 function getCookies(req) {
   return Object.fromEntries((req.headers.cookie || '').split(';').filter(Boolean).map(value => {
@@ -140,8 +151,8 @@ app.use((err, req, res, next) => {
 });
 
 async function start() {
-  try { await mongoose.connect(MONGODB_URI); app.listen(PORT, () => console.log(`Bucketlist is ready at http://localhost:${PORT}`)); }
+  try { await connectDb(); app.listen(PORT, () => console.log(`Bucketlist is ready at http://localhost:${PORT}`)); }
   catch (error) { console.error('Could not connect to MongoDB:', error.message); process.exit(1); }
 }
 if (require.main === module) start();
-module.exports = { app, start, models: { User, Bucket, Task, Session } };
+module.exports = app;
