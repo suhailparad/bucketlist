@@ -10,13 +10,27 @@ async function api(url,options={}){
   return data;
 }
 
-function Brand({dark=false}){return <a className={`brand ${dark?'dark':''}`} href="#"><span className="brand-mark">✓</span><span>bucketlist</span></a>}
+function BrandMark() {
+  return (
+    <span className="brand-mark">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" style={{ display: 'block' }}>
+        <path d="M 6 10 A 6 6 0 0 1 18 10" />
+        <path d="M 6 10 L 8 20 Q 8 21, 9 21 H 15 Q 16 21, 16 20 L 18 10" />
+        <path d="M 5 10 H 19" />
+        <path d="M 12 5 L 12.5 6.5 L 14 7 L 12.5 7.5 L 12 9 L 11.5 7.5 L 10 7 L 11.5 6.5 Z" fill="currentColor" stroke="none" />
+        <path d="M 19 3 L 19.3 4.2 L 20.5 4.5 L 19.3 4.8 L 19 6 L 18.7 4.8 L 17.5 4.5 L 18.7 4.2 Z" fill="currentColor" stroke="none" />
+      </svg>
+    </span>
+  );
+}
+
+function Brand({dark=false}){return <a className={`brand ${dark?'dark':''}`} href="#"><BrandMark /><span>bucketlist</span></a>}
 
 function Auth({onAuthenticated}){
   const [mode,setMode]=useState('login');const [error,setError]=useState('');const [busy,setBusy]=useState(false);
   async function submit(event){event.preventDefault();setBusy(true);setError('');const form=new FormData(event.currentTarget);try{const data=await api(`/api/auth/${mode}`,{method:'POST',body:JSON.stringify(Object.fromEntries(form))});onAuthenticated(data.user)}catch(err){setError(err.message)}finally{setBusy(false)}}
   const register=mode==='register';
-  return <section className="auth-view"><div className="auth-art"><Brand/><div className="auth-copy"><p className="eyebrow">Make room for wonder</p><h1>Life is short.<br/><em>Make it count.</em></h1><p>A thoughtful home for every place you want to go, skill you want to learn, and memory you want to make.</p></div><div className="floating-card card-one"><span>🏔️</span><div><strong>Hike the Dolomites</strong><small>Adventure</small></div></div><div className="floating-card card-two"><span>✓</span><div><strong>Learn to make pasta</strong><small>Completed today</small></div></div><p className="auth-quote">“The trouble is, you think you have time.” <span>— Jack Kornfield</span></p></div><div className="auth-panel"><div className="auth-box"><p className="mobile-brand"><span className="brand-mark">✓</span> bucketlist</p><h2>{register?'Start your list':'Welcome back'}</h2><p>{register?'Your someday deserves a place to begin.':'Sign in and keep making life memorable.'}</p><form onSubmit={submit}>{register&&<label>Full name<input name="fullName" type="text" autoComplete="name" placeholder="Your full name" maxLength="80" required/></label>}<label>Email address<input name="email" type="email" autoComplete="email" placeholder="you@example.com" required/></label><label>Password<input name="password" type="password" autoComplete={register?'new-password':'current-password'} placeholder="At least 8 characters" minLength="8" required/></label><button className="primary full" disabled={busy}>{busy?'Please wait…':register?'Create account':'Sign in'} <span>→</span></button><p className="form-error">{error}</p></form><p className="auth-switch"><span>{register?'Already have an account?':'New around here?'}</span> <button type="button" onClick={()=>{setMode(register?'login':'register');setError('')}}>{register?'Sign in':'Create an account'}</button></p></div></div></section>
+  return <section className="auth-view"><div className="auth-art"><Brand/><div className="auth-copy"><p className="eyebrow">Make room for wonder</p><h1>Life is short.<br/><em>Make it count.</em></h1><p>A thoughtful home for every place you want to go, skill you want to learn, and memory you want to make.</p></div><div className="floating-card card-one"><span>🏔️</span><div><strong>Hike the Dolomites</strong><small>Adventure</small></div></div><div className="floating-card card-two"><span>✓</span><div><strong>Learn to make pasta</strong><small>Completed today</small></div></div><p className="auth-quote">“The trouble is, you think you have time.” <span>— Jack Kornfield</span></p></div><div className="auth-panel"><div className="auth-box"><p className="mobile-brand"><BrandMark /> bucketlist</p><h2>{register?'Start your list':'Welcome back'}</h2><p>{register?'Your someday deserves a place to begin.':'Sign in and keep making life memorable.'}</p><form onSubmit={submit}>{register&&<label>Full name<input name="fullName" type="text" autoComplete="name" placeholder="Your full name" maxLength="80" required/></label>}<label>Email address<input name="email" type="email" autoComplete="email" placeholder="you@example.com" required/></label><label>Password<input name="password" type="password" autoComplete={register?'new-password':'current-password'} placeholder="At least 8 characters" minLength="8" required/></label><button className="primary full" disabled={busy}>{busy?'Please wait…':register?'Create account':'Sign in'} <span>→</span></button><p className="form-error">{error}</p></form><p className="auth-switch"><span>{register?'Already have an account?':'New around here?'}</span> <button type="button" onClick={()=>{setMode(register?'login':'register');setError('')}}>{register?'Sign in':'Create an account'}</button></p></div></div></section>
 }
 
 function BucketCard({bucket,onAdd,onToggle,onTrash,onDelete}){
